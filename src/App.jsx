@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
   return (
-    <div>
+    <div className='text-[5rem]'>
       App
     </div>
   )
