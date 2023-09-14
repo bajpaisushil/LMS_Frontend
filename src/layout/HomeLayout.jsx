@@ -3,6 +3,7 @@ import Footer from "../components/footer";
 import {FiMenu} from 'react-icons/fi';
 import {AiFillCloseCircle} from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/authSlice";
 
 
 function HomeLayout({children}){
@@ -22,9 +23,11 @@ function HomeLayout({children}){
         const drawerSide=document.getElementsByClassName('drawer-side');
         drawerSide[0].style.width='0';
     }
-    function onLogout(e){
+    async function onLogout(e){
         e.preventDefault();
-        navigate('/');
+        const response=await dispatch(logout());
+        if(response?.payload?.data)
+        navigate('/login');
     }
     return(
         <div className="min-h-[90vh] bg-gray-800">
