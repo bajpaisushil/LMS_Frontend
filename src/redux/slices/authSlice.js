@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const initialState={
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     role: localStorage.getItem("role") || "",
-    data: localStorage.getItem("data") || {}
+    data: JSON.parse(localStorage.getItem("data")) || {}
 }
 
 export const createAccount=createAsyncThunk("/auth/signup", async(data)=>{
@@ -41,8 +42,8 @@ export const login=createAsyncThunk("/auth/signin", async(data)=>{
         toast.error(error?.response?.data?.message);
     }
 })
-
 export const logout=createAsyncThunk("/auth/signout", async()=>{
+    
     try {
         const response=axiosInstance.post("user/logout");
         toast.promise(response, {
@@ -55,6 +56,8 @@ export const logout=createAsyncThunk("/auth/signout", async()=>{
     } catch (error) {
         console.log(error);
         toast.error(error?.response?.data?.message);
+        const nav=useNavigate();
+        nav("/login");
     }
 })
 
