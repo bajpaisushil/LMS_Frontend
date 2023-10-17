@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
 
+
 const CourseDescription = () => {
   const { state } = useLocation();
   const nav = useNavigate();
   const { role, data } = useSelector((state) => state.auth);
+  console.log('data', data);
 
   return (
     <HomeLayout>

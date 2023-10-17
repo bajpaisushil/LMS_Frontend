@@ -83,7 +83,7 @@ function Signin() {
                       Sign In
                   </button>
                   <p className="text-center">
-                          Donot have an account ? <Link to="/signup" className="cusror-pointer text-accent">Login</Link>
+                          Dont have an account ? <Link to="/signup" className="cusror-pointer text-accent">Register</Link>
                   </p>
               </form>
           </div>
